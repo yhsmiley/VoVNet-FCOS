@@ -8,6 +8,8 @@ MODEL:
   FCOS_ON: True
   RETINANET:
     USE_C5: False # FCOS uses P5 instead of C5
+  # FCOS:
+  #   NUM_CLASSES: 10  # the number of classes including background
 DATASETS:
   TRAIN: ("coco_2014_train", "coco_2014_valminusminival")
   TEST: ("coco_2014_minival",)
