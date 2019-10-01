@@ -12,13 +12,13 @@ def main():
     parser = argparse.ArgumentParser(description="PyTorch Object Detection Webcam Demo")
     parser.add_argument(
         "--config_file",
-        default="configs/aic/fcos_imprv_R_50_FPN_1x.yaml",
+        default="configs/aic/fcos_V_57_FPN_1x.yaml",
         metavar="FILE",
         help="path to config file",
     )
     parser.add_argument(
         "--weights",
-        default="models/FCOS_imprv_R_50_FPN_1x.pth",
+        default="training_dir/aic/fcos_V_57_FPN_1x/model_<>.pth",
         metavar="FILE",
         help="path to the trained model",
     )
@@ -48,7 +48,6 @@ def main():
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.MODEL.WEIGHT = args.weights
-
     cfg.freeze()
 
     # The following per-class thresholds are computed by maximizing
