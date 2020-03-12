@@ -1,0 +1,36 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "https://dl.dropbox.com/s/b826phjle6kbamu/vovnet57_statedict_norm.pth?dl=1"
+  BACKBONE:
+    CONV_BODY: "V-57-FPN-RETINANET"
+    FREEZE_CONV_BODY_AT: 0
+  RPN_ONLY: True
+  FCOS_ON: True
+  RETINANET:
+    USE_C5: False # FCOS uses P5 instead of C5
+  FCOS:
+    NUM_CLASSES: 21  # the number of classes including background
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 21
+DATASETS:
+  TRAIN: ("aic_train_cocostyle", "aic_val_cocostyle")
+  TEST: ("aic_test_cocostyle",)
+INPUT:
+  MIN_SIZE_RANGE_TRAIN: (640, 800)
+  # MAX_SIZE_TRAIN: 1333
+  MAX_SIZE_TRAIN: 800
+  MIN_SIZE_TEST: 800
+  # MAX_SIZE_TEST: 1333
+  MAX_SIZE_TEST: 1000
+DATALOADER:
+  SIZE_DIVISIBILITY: 32
+SOLVER:
+  WEIGHT_DECAY: 0.0001
+  # 1 GPU
+  BASE_LR: 0.00125
+  STEPS: (480000, 640000)
+  MAX_ITER: 720000
+  IMS_PER_BATCH: 1
+OUTPUT_DIR : 'training_dir/aic/fcos_V_57_FPN_1x'
+TEST:
+  IMS_PER_BATCH: 2

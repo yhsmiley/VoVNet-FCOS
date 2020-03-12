@@ -28,7 +28,7 @@ def main():
     )
     parser.add_argument(
         "--weights",
-        default="training_dir/aic/<weight>",
+        default="training_dir/aic/fcos_V_57_FPN_1x/<weight>",
         metavar="FILE",
         help="path to the trained model",
     )

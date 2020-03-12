@@ -112,6 +112,8 @@ def do_train(
         if iteration == max_iter:
             checkpointer.save("model_final", **arguments)
 
+        torch.cuda.empty_cache()
+
     total_training_time = time.time() - start_training_time
     total_time_str = str(datetime.timedelta(seconds=total_training_time))
     logger.info(
